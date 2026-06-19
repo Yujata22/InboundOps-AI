@@ -106,11 +106,3 @@ This will save model artifacts into the `models/` folder.
 ```bash
 streamlit run app/streamlit_app.py
 ```
-
-## Suggested GitHub Description
-
-> A synthetic-data hybrid ML + Agentic AI prototype for inbound logistics decision intelligence, predicting delay/accessorial risk and recommending next-best actions for container operations.
-
-## Suggested LinkedIn Framing
-
-> I prepared synthetic inbound logistics datasets using LLM-assisted data generation to safely prototype a hybrid ML + Agentic AI system. The ML layer predicts delay and accessorial cost risk, while the agentic layer reasons through scenarios such as wait, pre-pull, priority drayage, premium movement, or escalation to recommend the next best action.
