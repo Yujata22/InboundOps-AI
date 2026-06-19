@@ -1,108 +1,272 @@
-# InboundOps AI
+# 🚢 InboundOPS-AI
 
-A GitHub-ready demo project for a **hybrid Machine Learning + Agentic AI Decision Intelligence system** for inbound logistics.
+## From Container Delays to Decisions: A Hybrid ML + Agentic AI Copilot for Inbound Logistics
 
-This project uses **fully synthetic data**. It is not based on any proprietary company data, internal workflow, or confidential operational system.
+InboundOPS-AI is a **Decision Intelligence framework** designed to support **global inbound logistics operations**. The project combines **Machine Learning, business rules, and agentic reasoning** to predict operational risk, estimate cost exposure, and recommend the next best action for inbound shipments.
 
-## What it demonstrates
+The objective is simple:
 
-- Synthetic inbound container milestone data across two years
-- Synthetic cost data after empty container return
-- Feature engineering from shipment milestone gaps and cost attributes
-- ML models for delay risk, accessorial risk, accessorial cost prediction, and action recommendation
-- Agent-style decision workflow for scenario comparison and next-best-action recommendation
-- Streamlit app for an interactive local demo
+> **Transform inbound logistics from dashboard-driven monitoring to predictive, explainable, and conversation-driven decision intelligence.**
 
-## Project Structure
+---
+
+## 📌 Business Problem
+
+Global inbound logistics teams constantly manage uncertainty across the journey from **origin pickup, port movement, vessel transit, customs clearance, destination arrival, and empty container return**.
+
+When a container gets delayed, logistics operations teams are often faced with questions such as:
+
+* Should we continue with standard ocean movement, upgrade to premium movement, or expedite via air?
+* Which shipments justify premium transportation costs?
+* Is the shipment likely to incur detention or demurrage charges?
+* Should the container be rerouted, prioritized, or escalated?
+* What is the cost of action versus the cost of inaction?
+
+Answering these questions typically requires navigating multiple dashboards, manually stitching together shipment events and cost information, and relying heavily on institutional knowledge.
+
+InboundOPS-AI addresses these challenges by introducing an explainable decision intelligence layer capable of proactively assessing shipment risk and recommending next-best actions.
+
+---
+
+## 🏗️ Solution Overview
+
+InboundOPS-AI leverages:
+
+* Historical shipment milestone data
+* Transportation and accessorial cost signals
+* Machine Learning-based risk prediction
+* Scenario simulation
+* Agentic reasoning
+* Natural language interaction
+
+The platform provides:
+
+✅ Shipment status summarization
+
+✅ Delay and operational risk prediction
+
+✅ Accessorial cost exposure estimation
+
+✅ Scenario comparison
+
+✅ Explainable next-best-action recommendations
+
+---
+
+## 🏛️ System Architecture
+
+![Architecture](images/architecture.png)
+
+---
+
+## 🔄 End-to-End Workflow
 
 ```text
-inboundops_ai/
-├── app/
-│   └── streamlit_app.py
-├── data/
-│   ├── container_profiles.csv
-│   ├── shipment_milestones.csv
-│   ├── shipment_costs.csv
-│   └── model_features.csv   # created after training
-├── models/                  # created after training
-├── src/
-│   ├── generate_synthetic_data.py
-│   ├── features.py
-│   ├── train_models.py
-│   └── decision_engine.py
-├── requirements.txt
-└── README.md
+Synthetic Shipment & Cost Data
+                │
+                ▼
+Feature Engineering Layer
+(Container Dwell Time, Milestone Gaps,
+Delay Computation, Cost Aggregation)
+                │
+                ▼
+Machine Learning Layer
+├── Delay Risk Prediction Model
+├── Cost Exposure Prediction Model
+└── Action Recommendation Model
+                │
+                ▼
+Decision Intelligence Engine
+├── Shipment Context Agent
+├── Cost Exposure Agent
+├── Risk Assessment Agent
+├── Scenario Simulation Agent
+└── Recommendation Agent
+                │
+                ▼
+Streamlit Conversational Interface
+                │
+                ▼
+Explainable Next-Best Actions
 ```
 
-## Dataset Overview
+---
 
-### Shipment Milestones
+## 📂 Repository Structure
 
-Columns:
+```text
+InboundOPS-AI/
+│
+├── app/
+│   └── streamlit_app.py
+│
+├── data/
+│   ├── shipment_milestones.csv
+│   ├── shipment_costs.csv
+│   └── container_profile.csv
+│
+├── models/
+│   ├── delay_model.pkl
+│   └── cost_model.pkl
+│
+├── src/
+│   ├── train_models.py
+│   ├── decision_engine.py
+│   └── utils.py
+│
+├── images/
+│   ├── architecture.png
+│   ├── demo.gif
+│   └── screenshots/
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
 
-- `container_id`
-- `bol`
-- `milestone_code`
-- `milestone_date`
-- `port_name`
+---
 
-Generic milestone codes include:
+## 🧠 Machine Learning Components
 
-- `ORIGIN_GATE_IN`
-- `LOADED_ON_VESSEL`
-- `VESSEL_DEPARTED`
-- `DESTINATION_PORT_ARRIVAL`
-- `VESSEL_DISCHARGE`
-- `CUSTOMS_RELEASED`
-- `DESTINATION_GATE_OUT`
-- `DELIVERED_TO_NODE`
-- `EMPTY_RETURNED`
+### 1. Delay Risk Prediction
 
-### Shipment Costs
+Predicts the likelihood of shipment delays based on historical milestone patterns.
 
-Columns:
+**Example Features**
 
-- `container_id`
-- `bol`
-- `empty_return_date`
-- `cost_attribute_code`
-- `cost_amount_usd`
+* Milestone gaps
+* Port dwell time
+* Carrier behavior
+* Historical delay patterns
+* Transit variability
 
-Generic cost attributes include:
+---
 
-- `BASE`
-- `FUEL`
-- `DETENTION`
-- `DEMURRAGE`
-- `STORAGE`
-- `PRE_PULL`
-- `CHASSIS`
-- `ACCESSORIAL`
+### 2. Cost Exposure Prediction
 
-## Setup
+Estimates potential cost exposure associated with:
+
+* Detention
+* Demurrage
+* Storage
+* Chassis
+* Pre-pull
+* Other accessorial charges
+
+---
+
+### 3. Recommendation Engine
+
+Evaluates multiple operational scenarios including:
+
+* Continue Standard Ocean Movement
+* Upgrade to Premium Movement
+* Pre-Pull Container
+* Priority Drayage
+* Escalate Shipment
+
+The engine recommends the next best action by balancing:
+
+* Cost
+* Risk
+* Operational constraints
+* Business impact
+
+---
+
+## 💬 Example Questions
+
+Users can interact with the system using natural language:
+
+> What is the current status of container CONT10234?
+
+> Container CONT10234 has been delayed at destination port. What should we do next?
+
+> Estimate detention and demurrage exposure for container CONT10234.
+
+> Compare waiting versus pre-pull for container CONT10234.
+
+> Why was pre-pull recommended for container CONT10234?
+
+> Which shipments should logistics operations teams prioritize today?
+
+---
+
+## ⚙️ Technology Stack
+
+| Layer                | Technology    |
+| -------------------- | ------------- |
+| Programming Language | Python        |
+| Frontend             | Streamlit     |
+| Data Processing      | Pandas, NumPy |
+| Machine Learning     | Scikit-learn  |
+| Model Persistence    | Joblib        |
+| Visualization        | Streamlit     |
+| Version Control      | Git, GitHub   |
+
+---
+
+## 🚀 Getting Started
+
+### Clone the repository
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+git clone https://github.com/<your-username>/InboundOPS-AI.git
+cd InboundOPS-AI
+```
+
+### Create and activate virtual environment
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### Install dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-## Generate Synthetic Data
+### Train machine learning models
 
 ```bash
-python src/generate_synthetic_data.py
+python3 src/train_models.py
 ```
 
-## Train Models
+### Launch Streamlit application
 
 ```bash
-python src/train_models.py
+python3 -m streamlit run app/streamlit_app.py
 ```
 
-This will save model artifacts into the `models/` folder.
+The application will be available locally at:
 
-## Run Streamlit App
-
-```bash
-streamlit run app/streamlit_app.py
+```text
+http://localhost:8501
 ```
+
+---
+
+## 📊 Synthetic Data Notice
+
+This repository uses **fully synthetic shipment and cost datasets** generated exclusively for demonstration purposes.
+
+No proprietary, confidential, customer-specific, or employer-owned information has been used in the development of this project.
+
+The synthetic datasets are intended solely to demonstrate the decision intelligence framework and its applicability to real-world inbound logistics operations.
+
+---
+
+## 🔮 Future Enhancements
+
+* Integration with LLM-powered conversational agents
+* Multi-agent orchestration using LangGraph or CrewAI
+* Retrieval-Augmented Generation (RAG) over logistics SOP documentation
+* Real-time shipment event ingestion
+* External congestion and weather signal integration
+* Cloud deployment on AWS
+* Optimization-driven transportation mode selection
+* Human-in-the-loop decision workflows
+
+---
